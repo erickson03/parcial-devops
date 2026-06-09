@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -21,7 +21,6 @@ jobs:
       - name: Install Surge
         run: npm install --global surge
 
-      - name: Deploy
-        run: surge ./ \
-             https://erickson-devops-parcial.surge.sh \
-             --token ${{ secrets.SURGE_TOKEN }}
+      - name: Deploy to Surge
+        run: |
+          surge ./ erickson-devops-parcial.surge.sh --token ${{ secrets.SURGE_TOKEN }}
